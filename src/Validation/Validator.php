@@ -65,9 +65,9 @@ abstract class Validator
     protected function saveResult($result,$code = null)
     {
         if( $result ) {
-            $this->setSuccess($code);
+            return $this->setSuccess($code);
         } else {
-            $this->setError($code);
+            return $this->setError($code);
         }
     }
 
