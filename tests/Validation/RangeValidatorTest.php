@@ -27,5 +27,18 @@ class RangeValidatorTest extends PHPUnit_Framework_TestCase
         ok( ! $v->check("123") );
         ok( ! $v->check('test') );
     }
+
+    function test3()
+    {
+        $v = new RangeValidator( array( '>' => 100 , 'int' => true ) );
+        ok( ! $v->check("123") );
+        ok( ! $v->check('test') );
+        ok( ! $v->check(11) );
+        ok( ! $v->check(99) );
+        ok( $v->check(101) );
+    }
+
+
+
 }
 
