@@ -36,20 +36,32 @@ abstract class Validator
 
     /**
      * message code
+     *
+     * @var integer code number for message
      */
     public $code;
 
     public function __construct()
     {
-        // init default messages
+        // register default messages
         $this->messages = array(
             self::valid   => "Valid data",
             self::invalid => "Invalid data",
         );
     }
 
+
+    /**
+     * @param mixed $value 
+     */
     abstract function check($value);
 
+
+    /**
+     * 
+     * @param boolean $result 
+     * @param integer $code code of message
+     */
     protected function saveResult($result,$code = null)
     {
         if( $result ) {
@@ -59,12 +71,23 @@ abstract class Validator
         }
     }
 
+
+    /**
+     * set flag to success (valid)
+     *
+     * @param integer $code
+     */
     protected function setSuccess($code = null)
     {
         $this->code = $code ?: self::valid;
         return $this->isValid = true;
     }
 
+    /**
+     * set flag to invalid (valid)
+     *
+     * @param integer $code
+     */
     protected function setError($code = null)
     {
         $this->code = $code ?: self::invalid;
@@ -96,9 +119,17 @@ abstract class Validator
         $this->messages[ self::valid ] = $msg;
     }
 
+
+    /**
+     * set code message
+     *
+     * @param string $msg 
+     * @param integer $code code number
+     */
     public function setMessage($msg,$code)
     {
         $this->messages[ $code ] = $msg;
     }
+
 }
 
