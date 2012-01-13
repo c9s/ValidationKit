@@ -27,5 +27,6 @@ class PatternValidator extends Validator
         return $this->matches;
     }
 
+
 }
 
