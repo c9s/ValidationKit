@@ -1,5 +1,7 @@
 <?php
 namespace Validation;
+use Exception;
+
 
 /**
  *

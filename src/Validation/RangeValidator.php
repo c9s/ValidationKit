@@ -1,5 +1,6 @@
 <?php
 namespace Validation;
+use Exception;
 
 class RangeValidator
     extends Validator 
