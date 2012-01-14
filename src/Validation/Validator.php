@@ -2,7 +2,6 @@
 namespace Validation;
 use Exception;
 
-
 /**
  *
  * $validator = new PatternValidator( '#test test test#' );
