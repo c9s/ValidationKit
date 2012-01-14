@@ -3,7 +3,6 @@ namespace Validation;
 use Exception;
 
 /**
- *
  * $validator = new PatternValidator( '#test test test#' );
  * $bool = $validator->check( $value );
  * $msg  = $validator->getMessage();
