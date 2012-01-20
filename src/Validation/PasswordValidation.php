@@ -3,7 +3,6 @@ namespace Validation;
 
 class PasswordValidation extends Validator
 {
-
     protected $minLength;
     protected $maxLength;
     protected $withDigits;
@@ -20,10 +19,10 @@ class PasswordValidation extends Validator
             $this->withDigits = true;
         if( isset($options['with_alpha'] ) ) 
             $this->withAlpha = true;
-        if( isset($options['min_length'] ) )
-            $this->minLength = $options['min_length'];
-        if( isset($options['max_length'] ) )
-            $this->maxLength = $options['max_length'];
+        if( isset($options['min'] ) )
+            $this->minLength = $options['min'];
+        if( isset($options['max'] ) )
+            $this->maxLength = $options['max'];
     }
 
     public function check($givenPassword)
@@ -49,6 +48,7 @@ class PasswordValidation extends Validator
                 return $this->saveResult( false, self::require_alpha );
         }
 
+        return $this->saveResult( true, self::valid );
     }
 }
 
