@@ -61,6 +61,8 @@ abstract class Validator
      * 
      * @param boolean $result 
      * @param integer $code code of message
+     *
+     * @return boolean success or failed.
      */
     protected function saveResult($result,$code = null)
     {
