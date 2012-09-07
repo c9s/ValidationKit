@@ -1,5 +1,5 @@
 <?php
-namespace Validation;
+namespace ValidationKit;
 use PHPUnit_Framework_TestCase;
 use Exception;
 
@@ -11,8 +11,8 @@ class PatternValidatorTest extends PHPUnit_Framework_TestCase
     function test1()
     {
         $v = new PatternValidator( '#[a-z]#' );
-        ok( $v->check( 'abc' ) );
-        ok( ! $v->check( '123' ) );
+        ok( $v->validate( 'abc' ) );
+        ok( ! $v->validate( '123' ) );
     }
 }
 

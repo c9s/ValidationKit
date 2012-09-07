@@ -1,5 +1,5 @@
 <?php
-namespace Validation;
+namespace ValidationKit;
 use PHPUnit_Framework_TestCase;
 use Exception;
 
@@ -10,6 +10,6 @@ class CallbackValidatorTest extends PHPUnit_Framework_TestCase
         $validator = new CallbackValidator(function($value) {
             return true;
         });;
-        ok( $validator->check(123) );
+        ok( $validator->validate(123) );
     }
 }

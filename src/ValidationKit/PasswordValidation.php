@@ -25,7 +25,7 @@ class PasswordValidation extends Validator
             $this->maxLength = $options['max'];
     }
 
-    public function check($givenPassword)
+    public function validate($givenPassword)
     {
         if( $this->maxLength ) {
             if( strlen( $givenPassword ) > $this->maxLength ) {

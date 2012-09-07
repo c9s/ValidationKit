@@ -34,7 +34,7 @@ class StringValidator extends Validator
         $this->ignoreCase = $this->options['ignore_case'];
     }
 
-    public function check($value)
+    public function validate($value)
     {
         $ret = 1;
 

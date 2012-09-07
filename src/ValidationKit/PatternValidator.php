@@ -14,7 +14,7 @@ class PatternValidator extends Validator
         $this->flags = $flags;
     }
 
-    public function check($value) 
+    public function validate($value) 
     {
         if( $this->saveResult( preg_match( $this->pattern , $value , $matches ,$this->flags ) ) ) {
             $this->matches = $matches;

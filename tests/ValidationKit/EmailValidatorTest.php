@@ -1,5 +1,5 @@
 <?php
-namespace Validation;
+namespace ValidationKit;
 use PHPUnit_Framework_TestCase;
 use Exception;
 
@@ -11,9 +11,9 @@ class EmailValidatorTest extends PHPUnit_Framework_TestCase
     function test()
     {
         $validator = new EmailValidator;
-        ok( $validator->check( 'cornelius.howl@gmail.com' ) );
-        ok( $validator->check( 'cornelius.howl@test.co.jp' ) );
-        ok( $validator->check( 'cornelius.howl+github@test.co.jp' ) );
+        ok( $validator->validate( 'cornelius.howl@gmail.com' ) );
+        ok( $validator->validate( 'cornelius.howl@test.co.jp' ) );
+        ok( $validator->validate( 'cornelius.howl+github@test.co.jp' ) );
     }
 }
 

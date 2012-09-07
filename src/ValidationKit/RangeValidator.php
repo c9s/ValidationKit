@@ -18,14 +18,14 @@ class RangeValidator
         $this->isInteger = @$options['integer'] ?: @$options['int'] ?: false;
     }
 
-    public function check($value)
+    public function validate($value)
     {
         if( is_numeric($value) ) {
             if( $this->isInteger && ! is_integer( $value ) ) {
                 return $this->saveResult(false);
             }
 
-            // check range
+            // validate range
             $ret = 1;
             if ( $this->greaterThan !== null ) {
                 $ret = $value > $this->greaterThan ;

@@ -13,7 +13,7 @@ class CallbackValidator
         $this->callbackArgs = $callbackArgs;
     }
 
-    public function check($value)
+    public function validate($value)
     {
         $ret = call_user_func_array( $this->callbackArgs , array($value) );
         return $this->saveResult( $ret );

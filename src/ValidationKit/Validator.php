@@ -4,21 +4,21 @@ use Exception;
 
 /**
  * $validator = new PatternValidator( '#test test test#' );
- * $bool = $validator->check( $value );
+ * $bool = $validator->validate( $value );
  * $msg  = $validator->getMessage();
  *
  * $validator = new StringValidator(array( 
  *      'start_with' => '....' , 
  *      'end_with' => ... 
  *      ));
- * $bool = $validator->check( $string );
+ * $bool = $validator->validate( $string );
  * $msg  = $validator->getMessage();
  *
  * $validator = new IntegerRangeValidator(1, 100);
- * $bool = $validator->check( 200 );
+ * $bool = $validator->validate( 200 );
  *
  * $validator = new RangeValidator(array( '>' => 10 , '<' => 200 ));
- * $bool = $validator->check( 10.0 );
+ * $bool = $validator->validate( 10.0 );
  */
 
 abstract class Validator 
@@ -54,7 +54,7 @@ abstract class Validator
     /**
      * @param mixed $value 
      */
-    abstract function check($value);
+    abstract function validate($value);
 
 
     /**
