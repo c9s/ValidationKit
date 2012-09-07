@@ -1,5 +1,5 @@
 <?php
-namespace Validation;
+namespace ValidationKit;
 use Exception;
 
 class StringValidator extends Validator 

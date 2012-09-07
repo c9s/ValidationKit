@@ -1,5 +1,5 @@
 <?php
-namespace Validation;
+namespace ValidationKit;
 
 class PasswordValidation extends Validator
 {
