@@ -43,17 +43,22 @@ abstract class Validator
      */
     public $code;
 
-    public function __construct($options = array())
+
+    /**
+     * Initialize a validator with options and messages.
+     *
+     * @param array $options validate options.
+     * @param array $messages customized messages.
+     */
+    public function __construct($options = array(), $messages = array())
     {
         $this->options = $options;
 
-        // register default messages
-        $this->messages = array(
-            self::valid   => "Valid data",
-            self::invalid => "Invalid data",
-        );
+        if( ! $messages && isset($options['messages']) ) {
+            $messages = $options['messages'];
+        }
+        $this->messages = $messages;
     }
-
 
     /**
      * @param mixed $value 

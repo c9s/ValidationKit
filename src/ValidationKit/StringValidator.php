@@ -12,7 +12,7 @@ class StringValidator extends Validator
      *    except
      *    ignore_case
      */
-    public function __construct($options) 
+    public function __construct($options, $messages = null)
     {
         if( is_string($options) ) {
             $options = array( 'is' => $options );
@@ -25,7 +25,7 @@ class StringValidator extends Validator
             'is'          => null,
             'ignore_case' => false,
         ), $options );
-        parent::__construct($options);
+        parent::__construct($options,$messages);
     }
 
     public function validate($value)
