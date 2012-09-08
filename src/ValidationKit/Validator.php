@@ -93,6 +93,10 @@ abstract class Validator
         return $this->messages;
     }
 
+    public function setMessages($messages)
+    {
+        $this->messages = $messages;
+    }
 
     protected function invalid($msgId = null)
     {

@@ -14,10 +14,13 @@ class ChainedValidator extends Validator
             @list($class,$args,$messages) = $validatorArgs;
             $validator = new $class($args,$messages);
             $ret = $validator->validate($value);
-            if($ret === false)
+            if($ret === false) {
+                $this->isValid = false;
+                $this->setMessages($validator->getMessages());
                 return false;
+            }
         }
-        return true;
+        return $this->valid();
     }
 }
 
