@@ -21,5 +21,21 @@ class StringValidatorTest extends PHPUnit_Framework_TestCase
         ok($v->validate('foo_suffix'));
         not_ok($v->validate('foo_bar'));
     }
+
+    function testIs()
+    {
+        $v = new ValidationKit\StringValidator('that');
+        ok($v);
+        ok($v->validate('that'));
+        not_ok($v->validate('this'));
+    }
+
+    function testIs2()
+    {
+        $v = new ValidationKit\StringValidator(array( 'is' => 'that'));
+        ok($v);
+        ok($v->validate('that'));
+        not_ok($v->validate('this'));
+    }
 }
 
