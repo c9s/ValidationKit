@@ -23,8 +23,10 @@ use Exception;
 
 abstract class Validator 
 {
-    const valid = 0;
-    const invalid = 1;
+    /**
+     * @var array result messages
+     */
+    public $messages = array();
 
     public $msgstrs = array();
 
@@ -81,15 +83,23 @@ abstract class Validator
         }
     }
 
+    protected function addMessage($msgId)
+    {
+        $this->messages[] = $this->getMsgstr($msgId);
+    }
+
+
     protected function invalid($msgId = null)
     {
-        // $this->setResultMessageId($msgId);
+        $msgId = $msgId ?: 'invalid';
+        $this->addMessage($msgId);
         return $this->isValid = false;
     }
 
     protected function valid($msgId = null)
     {
-        // $this->setResultMessageId($msgId);
+        $msgId = $msgId ?: 'valid';
+        $this->addMessage($msgId);
         return $this->isValid = true;
     }
 
@@ -118,7 +128,8 @@ abstract class Validator
      */
     public function getMsgstr($msgId) 
     {
-        return $this->msgstrs[$msgId];
+        if( isset($this->msgstrs[$msgId]) )
+            return $this->msgstrs[$msgId];
     }
 
 

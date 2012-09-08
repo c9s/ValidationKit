@@ -3,52 +3,30 @@ namespace ValidationKit;
 
 class PasswordValidation extends Validator
 {
-    protected $minLength;
-    protected $maxLength;
-    protected $withDigits;
-    protected $withAlpha;
-
-    const exceed_max_length = 3;
-    const require_min_length = 4;
-    const require_digits = 5;
-    const require_alpha = 6;
-
-    public function __construct($options = array() )
-    {
-        if( isset($options['with_digits']) )
-            $this->withDigits = true;
-        if( isset($options['with_alpha'] ) ) 
-            $this->withAlpha = true;
-        if( isset($options['min'] ) )
-            $this->minLength = $options['min'];
-        if( isset($options['max'] ) )
-            $this->maxLength = $options['max'];
-    }
-
     public function validate($givenPassword)
     {
-        if( $this->maxLength ) {
-            if( strlen( $givenPassword ) > $this->maxLength ) {
-                return $this->saveResult( false, self::exceed_max_length );
+        if( $maxLength = $this->getOption('max_length') ) {
+            if( strlen( $givenPassword ) > $maxLength ) {
+                return $this->saveResult( false, 'exceed_max_length' );
             }
         }
-        if( $this->minLength ) {
-            if( strlen( $givenPassword ) < $this->minLength )  {
-                return $this->saveResult( false, self::require_min_length );
+        if( $minLength = $this->getOption('min_length') ) {
+            if( strlen( $givenPassword ) < $minLength )  {
+                return $this->saveResult( false, 'require_min_length' );
             }
         }
 
-        if( $this->withDigits ) {
+        if( $this->getOption('with_digits') ) {
             if( ! preg_match( '/\d/', $givenPassword ) ) 
-                return $this->saveResult( false, self::require_digits );
+                return $this->saveResult( false, 'require_digits' );
         }
 
-        if( $this->withAlpha ) {
+        if( $this->getOption('with_alpha') ) {
             if( ! preg_match( '/[a-zA-Z]/' , $givenPassword ) ) 
-                return $this->saveResult( false, self::require_alpha );
+                return $this->saveResult( false, 'require_alpha' );
         }
 
-        return $this->saveResult( true, self::valid );
+        return $this->saveResult( true, 'valid' );
     }
 }
 
