@@ -34,57 +34,61 @@ class StringValidator extends Validator
 
     public function validate($value)
     {
-        $ret = 1;
         if( $is = $this->getOption('is') ) {
-            if( isset($this->options['ignore_case']) ) {
-                $ret = $ret && (strlen( $is ) === strlen( $value ) 
-                        && stripos($value,$is) === 0 );
+            if( $this->getOption('ignore_case') ) {
+                if (strlen($is) !== strlen( $value ) 
+                    || stripos($value,$is) !== 0 ) 
+                    return $this->invalid('is_error');
             } else {
-                $ret = $ret && (strlen( $is ) === strlen( $value ) 
-                        && strpos($value,$is) === 0 );
+                if (strlen( $is ) !== strlen( $value ) 
+                    || strpos($value,$is) !== 0 )
+                    return $this->invalid('is_error');
             }
         }
 
         if( $startWith = $this->getOption('starts_with') ) {
             if( $this->getOption('ignore_case') ) {
-                $ret = $ret && stripos( $value,$startWith ) === 0;
+                if( stripos( $value,$startWith ) !== 0 )
+                    return $this->invalid('starts_with_error');
             } else {
-                $ret = $ret && strpos( $value,$startWith ) === 0;
+                if( strpos( $value,$startWith ) !== 0 )
+                    return $this->invalid('ends_with_error');
             }
         }
 
         if( $endWith = $this->getOption('ends_with') ) {
-            $len = strlen( $endWith );
-            $pos = strlen( $value ) - $len;
+            $len = strlen($endWith);
+            $pos = strlen($value) - $len;
             if( $this->getOption('ignore_case') ) {
-                $ret = $ret && strripos($value, $endWith) === $pos;
+                if( strripos($value, $endWith) !== $pos )
+                    return $this->invalid('ends_with_error');
             } else {
-                $ret = $ret && strrpos($value, $endWith) === $pos;
+                if( strrpos($value, $endWith) !== $pos )
+                    return $this->invalid('ends_with_error');
             }
         }
 
 
         if( $contains = $this->getOption('contains') ) {
             if( $this->getOption('ignore_case') ) {
-                $ret = $ret && strripos( $value, $contains ) !== false;
+                if( strripos( $value, $contains ) === false )
+                    return $this->invalid('contains_error');
             } else {
-                $ret = $ret && strrpos( $value, $contains ) !== false;
+                if( strrpos( $value, $contains ) === false )
+                    return $this->invalid('contains_error');
             }
         }
 
         if( $except = $this->getOption('except') ) {
             if( $this->getOption('ignore_case') ) {
-                $ret = $ret && stripos($value, $except) === false;
+                if( stripos($value, $except) !== false)
+                    return $this->invalid('except_error');
             } else {
-                $ret = $ret && strpos($value, $except) === false;
+                if( strpos($value, $except) !== false)
+                    return $this->invalid('except_error');
             }
         }
-
-        if( $ret === 1 ) {
-            throw new Exception("Nothing compared, empty option?");
-        } else {
-            return $this->saveResult( $ret );
-        }
+        return $this->valid();
     }
 }
 
