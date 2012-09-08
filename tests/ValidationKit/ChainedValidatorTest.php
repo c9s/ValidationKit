@@ -6,7 +6,8 @@ class ChainedValidatorTest extends PHPUnit_Framework_TestCase
     {
         $validator = new ValidationKit\ChainedValidator(array( 
             'validators' => array( 
-                array('ValidationKit\StringValidator',array('contains'=>'aaa'))
+                array('ValidationKit\StringValidator',array('contains'=>'aaa')),
+                array('ValidationKit\StringValidator',array('starts_with'=>'xxx')),
             )
         ));
         ok($validator);
