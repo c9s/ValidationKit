@@ -36,12 +36,12 @@ abstract class Validator
      */
     public $isValid;
 
+
+
     /**
-     * message code
-     *
-     * @var integer code number for message
+     * @var string message id for validation result.
      */
-    public $code;
+    public $resultMessageId;
 
 
     /**
@@ -77,53 +77,37 @@ abstract class Validator
      *
      * @return boolean success or failed.
      */
-    protected function saveResult($result,$code = null)
+    protected function saveResult($result,$msgId = null)
     {
         if( $result ) {
-            return $this->setValid($code);
+            return $this->valid($msgId);
         } else {
-            return $this->setInvalid($code);
+            return $this->invalid($msgId);
         }
     }
 
-    protected function invalid($code = null)
+    protected function invalid($msgId = null)
     {
-        return $this->setInvalid($code);
-    }
-
-    protected function valid($code = null)
-    {
-        return $this->setValid($code);
-    }
-
-
-    /**
-     * set flag to success (valid)
-     *
-     * @param integer $code
-     */
-    protected function setValid($code = null)
-    {
-        $this->code = $code ?: self::valid;
-        return $this->isValid = true;
-    }
-
-    /**
-     * set flag to invalid (valid)
-     *
-     * @param integer $code
-     */
-    protected function setInvalid($code = null)
-    {
-        $this->code = $code ?: self::invalid;
+        $this->setResultMessageId($msgId);
         return $this->isValid = false;
     }
 
-    protected function isInvalid()
+    protected function valid($msgId = null)
+    {
+        $this->setResultMessageId($msgId);
+        return $this->isValid = true;
+    }
+
+    public function isInvalid()
     {
         return $this->isValid === true;
     }
 
+
+    public function hasMessage($msgId)
+    {
+        return isset($this->messages[$msgId]);
+    }
 
     /**
      * Get message with a message id
@@ -133,6 +117,17 @@ abstract class Validator
     public function getMessage($msgId) 
     {
         return $this->messages[$msgId];
+    }
+
+
+    public function setResultMessageId($msgId)
+    {
+        $this->resultMessageId = $msgId;
+    }
+
+    public function getResultMessage()
+    {
+        return $this->getMessage($this->resultMessageId);
     }
 
     /**
