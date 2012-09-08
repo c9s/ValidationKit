@@ -6,12 +6,13 @@ class PasswordValidationTest extends PHPUnit_Framework_TestCase
     {
         $v = new ValidationKit\PasswordValidation(array(
             'with_digits' => true,
-            'max' => 10,
-            'min' => 3,
+            'max_length' => 10,
+            'min_length' => 3,
         ));
         ok( $v );
-
         ok( $v->validate('123nnn') );
+        not_ok( $v->validate('11') );
+        not_ok( $v->validate(md5(123)) );
     }
 }
 
