@@ -4,19 +4,11 @@ use Exception;
 
 class PatternValidator extends Validator 
 {
-    public $pattern;
-    public $flags;
     public $matches;
-
-    public function __construct($pattern, $flags = 0) {
-        parent::__construct();
-        $this->pattern = $pattern;
-        $this->flags = $flags;
-    }
 
     public function validate($value) 
     {
-        if( $this->saveResult( preg_match( $this->pattern , $value , $matches ,$this->flags ) ) ) {
+        if( $this->saveResult( preg_match( $this->getOption('pattern') , $value , $matches ,$this->getOption('flags') ) ) ) {
             $this->matches = $matches;
             return true;
         }
@@ -27,7 +19,6 @@ class PatternValidator extends Validator
     {
         return $this->matches;
     }
-
 
 }
 
