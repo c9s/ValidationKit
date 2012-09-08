@@ -6,7 +6,7 @@
  <taskdef resource="net/sf/antcontrib/antlib.xml"/>
 
  <target name="build"
-   depends="prepare,lint,phploc,pdepend,phpmd-ci,phpcs-ci,phpcpd,phpdox,phpunit,phpcb,onion"/>
+   depends="prepare,lint,bundle,phpunit,phploc,pdepend,phpmd-ci,phpcs-ci,phpcpd,phpdox,phpcb,onion"/>
 
  <target name="build-parallel"
    depends="prepare,lint,tools-parallel,phpunit,phpcb"/>
@@ -55,6 +55,13 @@
     <modified />
    </fileset>
   </apply>
+ </target>
+
+ <target name="bundle" description="Bundle and install packages">
+  <exec executable="onion">
+   <arg value="-q"/>
+   <arg value="install"/>
+  </exec>
  </target>
 
  <target name="phploc" description="Measure project size using PHPLOC">
