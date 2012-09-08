@@ -26,7 +26,9 @@ abstract class Validator
     const valid = 0;
     const invalid = 1;
 
-    public $messages;
+    public $messages = array();
+
+    public $options = array();
 
 
     /**
@@ -41,8 +43,10 @@ abstract class Validator
      */
     public $code;
 
-    public function __construct()
+    public function __construct($options = array())
     {
+        $this->options = $options;
+
         // register default messages
         $this->messages = array(
             self::valid   => "Valid data",
@@ -58,8 +62,9 @@ abstract class Validator
 
 
     /**
+     * Save validate result (success or fail)
      * 
-     * @param boolean $result 
+     * @param boolean $result success or fail
      * @param integer $code code of message
      *
      * @return boolean success or failed.
@@ -67,10 +72,20 @@ abstract class Validator
     protected function saveResult($result,$code = null)
     {
         if( $result ) {
-            return $this->setSuccess($code);
+            return $this->setValid($code);
         } else {
-            return $this->setError($code);
+            return $this->setInvalid($code);
         }
+    }
+
+    protected function invalid($code = null)
+    {
+        return $this->setInvalid($code);
+    }
+
+    protected function valid($code = null)
+    {
+        return $this->setValid($code);
     }
 
 
@@ -79,7 +94,7 @@ abstract class Validator
      *
      * @param integer $code
      */
-    protected function setSuccess($code = null)
+    protected function setValid($code = null)
     {
         $this->code = $code ?: self::valid;
         return $this->isValid = true;
@@ -90,7 +105,7 @@ abstract class Validator
      *
      * @param integer $code
      */
-    protected function setError($code = null)
+    protected function setInvalid($code = null)
     {
         $this->code = $code ?: self::invalid;
         return $this->isValid = false;
@@ -133,5 +148,16 @@ abstract class Validator
         $this->messages[ $code ] = $msg;
     }
 
+    public function getOption($name) {
+        if( isset($this->options[$name]) ) {
+            return $this->options[$name];
+        }
+    }
+
+    public function setOption($name) {
+        if( isset($this->options[$name]) ) {
+            return $this->options[$name];
+        }
+    }
 }
 

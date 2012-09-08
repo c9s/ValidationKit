@@ -4,82 +4,75 @@ use Exception;
 
 class StringValidator extends Validator 
 {
-    public $options;
-    public $ignoreCase;
-
     /**
      * valid options:
      *    start_with
-     *    end_with
+     *    endWith
      *    contains
      *    except
      *    ignore_case
      */
     public function __construct($options) 
     {
-        parent::__construct();
         if( is_string($options) ) {
             $options = array( 'is' => $options );
         }
-
-        $this->options = array_merge( array(
-            'start_with' => null,
-            'end_with' => null,
-            'contains' => null,
-            'except' => null,
-            'is' => null,
+        $options = array_merge( array(
+            'start_with'  => null,
+            'endWith'    => null,
+            'contains'    => null,
+            'except'      => null,
+            'is'          => null,
             'ignore_case' => false,
         ), $options );
-
-        $this->ignoreCase = $this->options['ignore_case'];
+        parent::__construct($options);
     }
 
     public function validate($value)
     {
         $ret = 1;
-
-        if( $is = @$options['is'] ) {
-            if( $this->ignoreCase ) {
+        if( $is = $this->getOption('is') ) {
+            if( isset($this->options['ignore_case']) ) {
                 $ret = $ret && (strlen( $is ) === strlen( $value ) 
-                        && stripos($is,$value) === 0 );
+                        && stripos($value,$is) === 0 );
             } else {
                 $ret = $ret && (strlen( $is ) === strlen( $value ) 
-                        && strpos($is,$value) === 0 );
+                        && strpos($value,$is) === 0 );
             }
         }
 
-        if( $start_with = @$options['start_with'] ) {
-            if( $this->ignoreCase ) {
-                $ret = $ret && stripos( $start_with , $value ) === 0;
+        if( $startWith = $this->getOption('start_with') ) {
+            if( $this->getOption('ignore_case') ) {
+                $ret = $ret && stripos( $value,$startWith ) === 0;
             } else {
-                $ret = $ret && strpos( $start_with , $value ) === 0;
+                $ret = $ret && strpos( $value,$startWith ) === 0;
             }
         }
 
-        if( $end_with = @$options['end_with'] ) {
-            $len = strlen( $end_with );
+        if( $endWith = $this->getOption('endWith') ) {
+            $len = strlen( $endWith );
             $pos = strlen( $value ) - $len;
-            if( $this->ignoreCase ) {
-                $ret = $ret && strripos( $end_with , $value ) === $pos;
+            if( $this->getOption('ignore_case') ) {
+                $ret = $ret && strripos($value, $endWith) === $pos;
             } else {
-                $ret = $ret && strrpos( $end_with , $value ) === $pos;
+                $ret = $ret && strrpos($value, $endWith) === $pos;
             }
         }
 
 
-        if( $contains = @$options['contains'] ) {
-            if( $this->ignoreCase ) {
-                $ret = $ret && strripos( $contains, $value ) !== false;
+        if( $contains = $this->getOption('contains') ) {
+            if( $this->getOption('ignore_case') ) {
+                $ret = $ret && strripos( $value, $contains ) !== false;
             } else {
-                $ret = $ret && strrpos( $contains, $value ) !== false;
+                $ret = $ret && strrpos( $value, $contains ) !== false;
             }
         }
 
         if( $except = @$options['except'] ) {
-            if( $this->ignoreCase ) {
-                $ret = $ret && strripos( $except, $value ) === false;
+            if( $this->getOption('ignore_case') ) {
+                $ret = $ret && strripos($value, $except ) === false;
             } else {
-                $ret = $ret && strrpos( $except, $value ) === false;
+                $ret = $ret && strrpos($value, $except ) === false;
             }
         }
 
