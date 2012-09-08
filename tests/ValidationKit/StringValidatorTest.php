@@ -5,7 +5,7 @@ class StringValidatorTest extends PHPUnit_Framework_TestCase
     function testStartWith()
     {
         $v = new ValidationKit\StringValidator(array( 
-            'start_with' => 'foo_'
+            'starts_with' => 'foo_'
         ));
         ok($v);
         ok($v->validate('foo_ok'));
@@ -15,7 +15,7 @@ class StringValidatorTest extends PHPUnit_Framework_TestCase
     function testEndWith()
     {
         $v = new ValidationKit\StringValidator(array( 
-            'end_with' => '_suffix'
+            'ends_with' => '_suffix'
         ));
         ok($v);
         ok($v->validate('foo_suffix'));
@@ -45,6 +45,14 @@ class StringValidatorTest extends PHPUnit_Framework_TestCase
         ok($v);
         ok($v->validate('Find the position of the first occurrence of a substring in a string'));
         not_ok($v->validate('Find the xxxx of the first occurrence of a substring in a string'));
+    }
+
+    function testExcept()
+    {
+        $v = new ValidationKit\StringValidator(array( 'except' => 'aaa'));
+        ok($v);
+        ok($v->validate('Find the position of the first occurrence of a substring in a string'));
+        not_ok($v->validate('Find the aaa of the first occurrence of a substring in a string'));
     }
 
 }

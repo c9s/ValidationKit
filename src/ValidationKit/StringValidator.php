@@ -6,8 +6,8 @@ class StringValidator extends Validator
 {
     /**
      * valid options:
-     *    start_with
-     *    endWith
+     *    starts_with
+     *    ends_with
      *    contains
      *    except
      *    ignore_case
@@ -18,8 +18,8 @@ class StringValidator extends Validator
             $options = array( 'is' => $options );
         }
         $options = array_merge( array(
-            'start_with'  => null,
-            'end_with'    => null,
+            'starts_with'  => null,
+            'ends_with'    => null,
             'contains'    => null,
             'except'      => null,
             'is'          => null,
@@ -41,7 +41,7 @@ class StringValidator extends Validator
             }
         }
 
-        if( $startWith = $this->getOption('start_with') ) {
+        if( $startWith = $this->getOption('starts_with') ) {
             if( $this->getOption('ignore_case') ) {
                 $ret = $ret && stripos( $value,$startWith ) === 0;
             } else {
@@ -49,7 +49,7 @@ class StringValidator extends Validator
             }
         }
 
-        if( $endWith = $this->getOption('end_with') ) {
+        if( $endWith = $this->getOption('ends_with') ) {
             $len = strlen( $endWith );
             $pos = strlen( $value ) - $len;
             if( $this->getOption('ignore_case') ) {
@@ -68,11 +68,11 @@ class StringValidator extends Validator
             }
         }
 
-        if( $except = @$options['except'] ) {
+        if( $except = $this->getOption('except') ) {
             if( $this->getOption('ignore_case') ) {
-                $ret = $ret && strripos($value, $except ) === false;
+                $ret = $ret && stripos($value, $except) === false;
             } else {
-                $ret = $ret && strrpos($value, $except ) === false;
+                $ret = $ret && strpos($value, $except) === false;
             }
         }
 
