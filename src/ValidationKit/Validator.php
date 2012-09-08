@@ -93,7 +93,8 @@ abstract class Validator
     {
         $msgId = $msgId ?: 'invalid';
         $this->addMessage($msgId);
-        return $this->isValid = false;
+        $this->isValid = false;
+        return false;
     }
 
     protected function valid($msgId = null)

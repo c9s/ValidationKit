@@ -10,9 +10,9 @@ class PatternValidator extends Validator
     {
         if( $this->saveResult( preg_match( $this->getOption('pattern') , $value , $matches ,$this->getOption('flags') ) ) ) {
             $this->matches = $matches;
-            return true;
+            return $this->valid();
         }
-        return false;
+        return $this->invalid();
     }
 
     public function getMatches()

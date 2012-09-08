@@ -5,40 +5,38 @@ use Exception;
 class RangeValidator
     extends Validator 
 {
-
-    public $greaterThan;
-    public $lessThan;
-    public $isInteger;
-
-    public function  __construct( array $options ) 
+    public function  __construct($options = array(),$messages = array()) 
     {
-        parent::__construct();
-        $this->greaterThan = @$options['greater_than'] ?: @$options['>'];
-        $this->lessThan = @$options['less_than'] ?: @$options['<'];
-        $this->isInteger = @$options['integer'] ?: @$options['int'] ?: false;
+        if( isset($options['>']) )
+            $options['greater_than'] = $options['>'];
+        if( isset($options['<']) )
+            $options['less_than'] = $options['<'];
+        if( isset($options['int']) )
+            $options['integer'] = $options['int'];
+        parent::__construct($options,$messages);
     }
 
     public function validate($value)
     {
-        if( is_numeric($value) ) {
-            if( $this->isInteger && ! is_integer( $value ) ) {
-                return $this->saveResult(false);
-            }
+        if( ! is_numeric($value) )
+            return $this->invalid();
 
-            // validate range
-            $ret = 1;
-            if ( $this->greaterThan !== null ) {
-                $ret = $value > $this->greaterThan ;
-            }
-            if( $this->lessThan !== null ) {
-                $ret = $ret && ($value < $this->lessThan);
-            }
-            if( $ret === 1 ) {
-                throw new Exception("Nothing is compared.");
-            }
-            return $this->saveResult($ret);
+        if( $this->getOption('integer') )  {
+            if ( ! is_integer( $value ) || is_string($value) )
+                return $this->invalid();
         }
-        return $this->saveResult(false);
+
+        if ( $greater = $this->getOption('greater_than') ) {
+            if( $value <= $greater ) {
+                return $this->invalid('greater_than_error');
+            }
+        }
+        if( $less = $this->getOption('less_than') ) {
+            if( $value >= $less ) {
+                return $this->invalid('less_than_error');
+            }
+        }
+        return $this->valid();
     }
 }
 
