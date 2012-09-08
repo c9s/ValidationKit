@@ -37,32 +37,25 @@ abstract class Validator
     public $isValid;
 
 
-
-    /**
-     * @var string message id for validation result.
-     */
-    public $resultMessageId;
-
-
     /**
      * Initialize a validator with options and messages.
      *
      * @param array $options validate options.
-     * @param array $messages customized messages.
+     * @param array $msgstrs customized messages.
      */
-    public function __construct($options = array(), $messages = array())
+    public function __construct($options = array(), $msgstrs = array())
     {
         $this->options = $options;
 
-        if( ! $messages && isset($options['messages']) ) {
-            $messages = $options['messages'];
-        } elseif( ! $messages ) {
-            $messages = array();
+        if( ! $msgstrs && isset($options['messages']) ) {
+            $msgstrs = $options['messages'];
+        } elseif( ! $msgstrs ) {
+            $msgstrs = array();
         }
         $this->msgstrs = array_merge(array(
             'invalid' => 'Invalid data',
-            'valid' => 'Invalid data',
-        ),$messages);
+            'valid' => 'Valid data',
+        ),$msgstrs);
     }
 
     /**
