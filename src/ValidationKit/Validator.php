@@ -57,7 +57,10 @@ abstract class Validator
         if( ! $messages && isset($options['messages']) ) {
             $messages = $options['messages'];
         }
-        $this->messages = $messages;
+        $this->messages = array_merge(array(
+            'invalid' => 'Invalid data',
+            'valid' => 'Invalid data',
+        ),$messages);
     }
 
     /**
@@ -116,41 +119,31 @@ abstract class Validator
         return $this->isValid = false;
     }
 
-    protected function isSuccess()
+    protected function isInvalid()
     {
         return $this->isValid === true;
     }
 
-    public function getCode()
-    {
-        return $this->code;
-    }
-
-    public function getMessage() 
-    {
-        return $this->messages[ $this->code ];
-    }
-
-    public function setInvalidMessage($msg)
-    {
-        $this->messages[ self::invalid ] = $msg;
-    }
-
-    public function setValidMessage($msg)
-    {
-        $this->messages[ self::valid ] = $msg;
-    }
-
 
     /**
-     * set code message
+     * Get message with a message id
+     *
+     * @param string $msgId
+     */
+    public function getMessage($msgId) 
+    {
+        return $this->messages[$msgId];
+    }
+
+    /**
+     * Set message
      *
      * @param string $msg 
      * @param integer $code code number
      */
-    public function setMessage($msg,$code)
+    public function setMessage($msgId,$msg)
     {
-        $this->messages[ $code ] = $msg;
+        $this->messages[ $msgId ] = $msg;
     }
 
     public function getOption($name) {

@@ -1,6 +1,7 @@
 <?php
 namespace ValidationKit;
 use Exception;
+use InvalidArgumentException;
 
 class StringValidator extends Validator 
 {
@@ -12,8 +13,11 @@ class StringValidator extends Validator
      *    except
      *    ignore_case
      */
-    public function __construct($options, $messages = null)
+    public function __construct($options = array(), $messages = array())
     {
+        if( empty($options) ) {
+            throw new InvalidArgumentException('validate options is required.');
+        }
         if( is_string($options) ) {
             $options = array( 'is' => $options );
         }
