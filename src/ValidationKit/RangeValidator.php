@@ -19,7 +19,7 @@ class RangeValidator
     public function validate($value)
     {
         if( ! is_numeric($value) )
-            return $this->invalid();
+            return $this->invalid('not_numeric');
 
         if( $this->getOption('integer') )  {
             if ( ! is_integer( $value ) || is_string($value) )
