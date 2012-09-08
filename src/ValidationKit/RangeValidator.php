@@ -23,7 +23,11 @@ class RangeValidator
 
         if( $this->getOption('integer') )  {
             if ( ! is_integer( $value ) || is_string($value) )
-                return $this->invalid();
+                return $this->invalid('integer_error');
+        }
+        if( $this->getOption('float') ) {
+            if( ! is_float($value) ) 
+                return $this->invalid('float_error');
         }
 
         if ( $greater = $this->getOption('greater_than') ) {
