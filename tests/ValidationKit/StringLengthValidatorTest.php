@@ -2,7 +2,7 @@
 
 class StringLengthValidatorTest extends PHPUnit_Framework_TestCase
 {
-    function test()
+    function testStringLength()
     {
         $v = new ValidationKit\StringLengthValidator(array( 
             'min' => 5,
