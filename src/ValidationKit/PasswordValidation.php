@@ -25,7 +25,7 @@ class PasswordValidation extends Validator
             if( ! preg_match( '/[a-zA-Z]/' , $givenPassword ) ) 
                 return $this->invalid('require_alpha');
         }
-        return $this->saveResult( true, 'valid' );
+        return $this->valid();
     }
 }
 
