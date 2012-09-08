@@ -83,9 +83,14 @@ abstract class Validator
         }
     }
 
-    protected function addMessage($msgId)
+    public function addMessage($msgId)
     {
         $this->messages[] = $this->getMsgstr($msgId);
+    }
+
+    public function getMessages()
+    {
+        return $this->messages;
     }
 
 
