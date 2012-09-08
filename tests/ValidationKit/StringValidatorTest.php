@@ -37,5 +37,15 @@ class StringValidatorTest extends PHPUnit_Framework_TestCase
         ok($v->validate('that'));
         not_ok($v->validate('this'));
     }
+
+
+    function testContains()
+    {
+        $v = new ValidationKit\StringValidator(array( 'contains' => 'position'));
+        ok($v);
+        ok($v->validate('Find the position of the first occurrence of a substring in a string'));
+        not_ok($v->validate('Find the xxxx of the first occurrence of a substring in a string'));
+    }
+
 }
 
