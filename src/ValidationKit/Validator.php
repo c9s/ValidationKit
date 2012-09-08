@@ -26,7 +26,7 @@ abstract class Validator
     const valid = 0;
     const invalid = 1;
 
-    public $messages = array();
+    public $msgstrs = array();
 
     public $options = array();
 
@@ -56,8 +56,10 @@ abstract class Validator
 
         if( ! $messages && isset($options['messages']) ) {
             $messages = $options['messages'];
+        } elseif( ! $messages ) {
+            $messages = array();
         }
-        $this->messages = array_merge(array(
+        $this->msgstrs = array_merge(array(
             'invalid' => 'Invalid data',
             'valid' => 'Invalid data',
         ),$messages);
@@ -88,13 +90,13 @@ abstract class Validator
 
     protected function invalid($msgId = null)
     {
-        $this->setResultMessageId($msgId);
+        // $this->setResultMessageId($msgId);
         return $this->isValid = false;
     }
 
     protected function valid($msgId = null)
     {
-        $this->setResultMessageId($msgId);
+        // $this->setResultMessageId($msgId);
         return $this->isValid = true;
     }
 
@@ -104,31 +106,28 @@ abstract class Validator
     }
 
 
-    public function hasMessage($msgId)
-    {
-        return isset($this->messages[$msgId]);
-    }
 
     /**
-     * Get message with a message id
+     * Check if a msgstr exists with msgId.
      *
      * @param string $msgId
      */
-    public function getMessage($msgId) 
+    public function hasMsgstr($msgId)
     {
-        return $this->messages[$msgId];
+        return isset($this->msgstrs[$msgId]);
     }
 
 
-    public function setResultMessageId($msgId)
+    /**
+     * Get message string with a message id
+     *
+     * @param string $msgId
+     */
+    public function getMsgstr($msgId) 
     {
-        $this->resultMessageId = $msgId;
+        return $this->msgstrs[$msgId];
     }
 
-    public function getResultMessage()
-    {
-        return $this->getMessage($this->resultMessageId);
-    }
 
     /**
      * Set message
@@ -136,9 +135,9 @@ abstract class Validator
      * @param string $msg 
      * @param integer $code code number
      */
-    public function setMessage($msgId,$msg)
+    public function setMsgstr($msgId,$msg)
     {
-        $this->messages[ $msgId ] = $msg;
+        $this->msgstrs[ $msgId ] = $msg;
     }
 
     public function getOption($name) {
