@@ -19,7 +19,7 @@ class StringValidator extends Validator
         }
         $options = array_merge( array(
             'start_with'  => null,
-            'endWith'    => null,
+            'end_with'    => null,
             'contains'    => null,
             'except'      => null,
             'is'          => null,
@@ -49,7 +49,7 @@ class StringValidator extends Validator
             }
         }
 
-        if( $endWith = $this->getOption('endWith') ) {
+        if( $endWith = $this->getOption('end_with') ) {
             $len = strlen( $endWith );
             $pos = strlen( $value ) - $len;
             if( $this->getOption('ignore_case') ) {
@@ -77,7 +77,7 @@ class StringValidator extends Validator
         }
 
         if( $ret === 1 ) {
-            throw new Exception("Empty options");
+            throw new Exception("Nothing compared, empty option?");
         } else {
             return $this->saveResult( $ret );
         }
