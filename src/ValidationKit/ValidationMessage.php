@@ -31,6 +31,11 @@ class ValidationMessage
         return $msg;
     }
 
+    public function __toString() 
+    {
+        return $this->message;
+    }
+
 }
 
 

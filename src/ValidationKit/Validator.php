@@ -1,25 +1,7 @@
 <?php
 namespace ValidationKit;
 use Exception;
-
-/**
- * $validator = new PatternValidator( '#test test test#' );
- * $bool = $validator->validate( $value );
- * $msg  = $validator->getMessage();
- *
- * $validator = new StringValidator(array( 
- *      'start_with' => '....' , 
- *      'end_with' => ... 
- *      ));
- * $bool = $validator->validate( $string );
- * $msg  = $validator->getMessage();
- *
- * $validator = new IntegerRangeValidator(1, 100);
- * $bool = $validator->validate( 200 );
- *
- * $validator = new RangeValidator(array( '>' => 10 , '<' => 200 ));
- * $bool = $validator->validate( 10.0 );
- */
+use ValidationKit\ValidationMessage;
 
 abstract class Validator 
 {
@@ -83,9 +65,14 @@ abstract class Validator
         }
     }
 
-    public function addMessage($msgId)
+    public function addValidMessage($msgId)
     {
-        $this->messages[] = $this->getMsgstr($msgId);
+        $this->messages[] = ValidationMessage::createValid($msgId,$this->getMsgstr($msgId));
+    }
+
+    public function addInvalidMessage($msgId)
+    {
+        $this->messages[] = ValidationMessage::createInvalid($msgId,$this->getMsgstr($msgId));
     }
 
     public function getMessages()
@@ -101,7 +88,7 @@ abstract class Validator
     protected function invalid($msgId = null)
     {
         $msgId = $msgId ?: 'invalid';
-        $this->addMessage($msgId);
+        $this->addInvalidMessage($msgId);
         $this->isValid = false;
         return false;
     }
@@ -109,7 +96,7 @@ abstract class Validator
     protected function valid($msgId = null)
     {
         $msgId = $msgId ?: 'valid';
-        $this->addMessage($msgId);
+        $this->addValidMessage($msgId);
         return $this->isValid = true;
     }
 
