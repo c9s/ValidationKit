@@ -37,8 +37,8 @@ abstract class Validator
             $msgstrs = array();
         }
         $this->msgstrs = array_merge(array(
-            'invalid' => 'Invalid data',
-            'valid' => 'Valid data',
+            'invalid' => 'Invalid',
+            'valid' => 'Valid',
         ),$msgstrs);
     }
 
