@@ -51,14 +51,14 @@ abstract class Validator
     /**
      * Save validate result (success or fail)
      * 
-     * @param boolean $result success or fail
-     * @param integer $code code of message
+     * @param boolean $valid success or fail
+     * @param string $msgId code of message
      *
      * @return boolean success or failed.
      */
-    protected function saveResult($result,$msgId = null)
+    protected function reportResult($valid,$msgId = null)
     {
-        if( $result ) {
+        if( $valid ) {
             return $this->valid($msgId);
         } else {
             return $this->invalid($msgId);

@@ -16,7 +16,7 @@ class CallbackValidator
     public function validate($value)
     {
         $ret = call_user_func_array( $this->callbackArgs , array($value) );
-        return $this->saveResult( $ret );
+        return $this->reportResult( $ret );
     }
 
 }
