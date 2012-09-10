@@ -10,15 +10,15 @@
     <email>cornelius.howl@gmail.com</email>
     <active>yes</active>
   </lead>
-  <date>2012-09-08</date>
-  <time>16:05:48</time>
+  <date>2012-09-10</date>
+  <time>10:44:33</time>
   <version>
-    <release>0.2.0</release>
-    <api>0.2.0</api>
+    <release>0.2.1</release>
+    <api>0.2.1</api>
   </version>
   <stability>
-    <release>alpha</release>
-    <api>alpha</api>
+    <release>stable</release>
+    <api>stable</api>
   </stability>
   <license>PHP</license>
   <notes>-</notes>
@@ -36,7 +36,7 @@
       <file name="tests/ValidationKit/StringLengthValidatorTest.php" role="test" md5sum="db9ede088832f3e8b00d8a4e49bf4a2e"/>
       <file name="tests/ValidationKit/StringValidatorTest.php" role="test" md5sum="ba039f567ef00e5baf3550550c801bb6"/>
       <file name="tests/ValidationKit/TW/IDNumberValidatorTest.php" role="test" md5sum="c6f993e3a45c78f7380e59d3fed5699a"/>
-      <file name="src/ValidationKit/CallbackValidator.php" role="php" md5sum="50b5280ea9c391da7bd3261f3dddb5c4"/>
+      <file name="src/ValidationKit/CallbackValidator.php" role="php" md5sum="a1409d3a2ed0086f696c117ba6e42a4e"/>
       <file name="src/ValidationKit/ChainedValidator.php" role="php" md5sum="f042602e9e219d126c83adb7f70e44d1"/>
       <file name="src/ValidationKit/EmailValidator.php" role="php" md5sum="9e2b26203850cc65edae86dd925588a6"/>
       <file name="src/ValidationKit/PasswordValidation.php" role="php" md5sum="96ba0331e2909e88c608c7d4c77c0e2a"/>
@@ -46,7 +46,8 @@
       <file name="src/ValidationKit/StringLengthValidator.php" role="php" md5sum="af3ad33fe70a6a7ca732078d16eb4f5f"/>
       <file name="src/ValidationKit/StringValidator.php" role="php" md5sum="4684c1aa26971cd60e6d5596c8246791"/>
       <file name="src/ValidationKit/TW/IDNumberValidator.php" role="php" md5sum="c41ed1bd567c9388dd7ab39da3f46a41"/>
-      <file name="src/ValidationKit/Validator.php" role="php" md5sum="2fa2d69db525a7979abf8286746d5c9f"/>
+      <file name="src/ValidationKit/ValidationMessage.php" role="php" md5sum="a70a3163f73326ac239591f8dcf5aa83"/>
+      <file name="src/ValidationKit/Validator.php" role="php" md5sum="9e9138330e351c931ffe4cd8c32ce3c6"/>
     </dir>
   </contents>
   <dependencies>
@@ -88,6 +89,7 @@
       <install name="src/ValidationKit/StringLengthValidator.php" as="ValidationKit/StringLengthValidator.php"/>
       <install name="src/ValidationKit/StringValidator.php" as="ValidationKit/StringValidator.php"/>
       <install name="src/ValidationKit/TW/IDNumberValidator.php" as="ValidationKit/TW/IDNumberValidator.php"/>
+      <install name="src/ValidationKit/ValidationMessage.php" as="ValidationKit/ValidationMessage.php"/>
       <install name="src/ValidationKit/Validator.php" as="ValidationKit/Validator.php"/>
     </filelist>
   </phprelease>
