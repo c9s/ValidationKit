@@ -39,7 +39,6 @@ $validtor = new PasswordValidator(array( /* options */ ), array(
     'require_alpha_error'  => 'Please enter alphabets in your password',
     'max_length_error' => 'The maximum length of password is 24 charactors.'
 ));
-?>
 ```
 
 The following list is the default message mapping:
@@ -81,7 +80,6 @@ properties in `ValidationMessage`:
 ### EmailValidator
 
 ```php
-<?php
 use ValidationKit\EmailValidator;
 $validator = new EmailValidator;
 if( $validator->validate('foo@foo.com') ) {
@@ -98,7 +96,6 @@ if( $validator->validate('foo@foo.com') ) {
 ### PatternValidator 
 
 ```php
-<?php
     use ValidationKit\PatternValidator;
     $validator = new PatternValidator( '#test test test#' );
     $bool = $validator->validate( $value );
@@ -108,7 +105,6 @@ if( $validator->validate('foo@foo.com') ) {
 ### StringLengthValidator
 
 ```php
-<?php
 $validator = new ValidationKit\StringLengthValidator(array( 
     'min' => 5, 'max' => 10,
 ));
@@ -117,7 +113,6 @@ $validator = new ValidationKit\StringLengthValidator(array(
 ### StringValidator
 
 ```php
-<?php
     use ValidationKit\StringValidator;
     $validator = new StringValidator(array( 
             'starts_with' => '....' , 
@@ -139,7 +134,6 @@ $validator = new ValidationKit\StringLengthValidator(array(
 ### PasswordValidator
 
 ```php
-<?php
 $validator = new ValidationKit\PasswordValidator(array(
     'max_length' => 24,
     'min_length' => 10,
@@ -155,7 +149,6 @@ $validator = new ValidationKit\PasswordValidator(array(
 ### RangeValidator
 
 ```php
-<?php
     use ValidationKit\RangeValidator;
     $validator = new RangeValidator(array(
         'greater_than' => 100,
@@ -173,7 +166,6 @@ Customize your validator
 To write your own validator, here is the basic structure of a validator class:
 
 ```php
-<?php
 namespace YourApp;
 use ValidationKit\Validator;
 
@@ -190,7 +182,6 @@ You can provide your default message dictinory by defining a
 `getDefaultMessages` method:
 
 ```php
-<?php
 namespace YourApp;
 use ValidationKit\Validator;
 
