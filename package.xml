@@ -10,11 +10,11 @@
     <email>cornelius.howl@gmail.com</email>
     <active>yes</active>
   </lead>
-  <date>2012-09-10</date>
-  <time>10:45:05</time>
+  <date>2012-09-16</date>
+  <time>18:39:25</time>
   <version>
-    <release>0.2.1</release>
-    <api>0.2.1</api>
+    <release>1.0.0</release>
+    <api>1.0.0</api>
   </version>
   <stability>
     <release>stable</release>
@@ -29,17 +29,17 @@
       <file name="tests/ValidationKit/CallbackValidatorTest.php" role="test" md5sum="3041edaad12b32175acf5d97cfab5e97"/>
       <file name="tests/ValidationKit/ChainedValidatorTest.php" role="test" md5sum="c59d501df531ce86993ee5c4b898a86e"/>
       <file name="tests/ValidationKit/EmailValidatorTest.php" role="test" md5sum="012fdbf4ca049dd7ab687b98ec8d3a41"/>
-      <file name="tests/ValidationKit/PasswordValidationTest.php" role="test" md5sum="80a86a0bb3125ade6eed717c4cd24068"/>
+      <file name="tests/ValidationKit/PasswordValidatorTest.php" role="test" md5sum="841855b3606ad00182dcbf43f69edc4b"/>
       <file name="tests/ValidationKit/PatternValidatorTest.php" role="test" md5sum="adff785ab1bf89c3649ccf13a60d078f"/>
       <file name="tests/ValidationKit/PhoneNumber/TWPhoneNumberValidatorTest.php" role="test" md5sum="eeb96cd3b6db8f7870fc8dd99ebac469"/>
       <file name="tests/ValidationKit/RangeValidatorTest.php" role="test" md5sum="ecfd674c3d6b114e4c5ed1afde40c09b"/>
-      <file name="tests/ValidationKit/StringLengthValidatorTest.php" role="test" md5sum="db9ede088832f3e8b00d8a4e49bf4a2e"/>
+      <file name="tests/ValidationKit/StringLengthValidatorTest.php" role="test" md5sum="9d08cd47b6a5264c11defc82e2b0b6e7"/>
       <file name="tests/ValidationKit/StringValidatorTest.php" role="test" md5sum="ba039f567ef00e5baf3550550c801bb6"/>
       <file name="tests/ValidationKit/TW/IDNumberValidatorTest.php" role="test" md5sum="c6f993e3a45c78f7380e59d3fed5699a"/>
       <file name="src/ValidationKit/CallbackValidator.php" role="php" md5sum="a1409d3a2ed0086f696c117ba6e42a4e"/>
       <file name="src/ValidationKit/ChainedValidator.php" role="php" md5sum="f042602e9e219d126c83adb7f70e44d1"/>
       <file name="src/ValidationKit/EmailValidator.php" role="php" md5sum="9e2b26203850cc65edae86dd925588a6"/>
-      <file name="src/ValidationKit/PasswordValidation.php" role="php" md5sum="96ba0331e2909e88c608c7d4c77c0e2a"/>
+      <file name="src/ValidationKit/PasswordValidator.php" role="php" md5sum="eb3808e4b786a635f395a281a1ad99b1"/>
       <file name="src/ValidationKit/PatternValidator.php" role="php" md5sum="d25acd5f3c26df23e6c3728ca4f94e17"/>
       <file name="src/ValidationKit/PhoneNumber/TWPhoneNumberValidator.php" role="php" md5sum="7dd7036a912c8e22f1f184436246e062"/>
       <file name="src/ValidationKit/RangeValidator.php" role="php" md5sum="129c00b053ad42c256c8eabc6574c95a"/>
@@ -47,7 +47,7 @@
       <file name="src/ValidationKit/StringValidator.php" role="php" md5sum="4684c1aa26971cd60e6d5596c8246791"/>
       <file name="src/ValidationKit/TW/IDNumberValidator.php" role="php" md5sum="c41ed1bd567c9388dd7ab39da3f46a41"/>
       <file name="src/ValidationKit/ValidationMessage.php" role="php" md5sum="a70a3163f73326ac239591f8dcf5aa83"/>
-      <file name="src/ValidationKit/Validator.php" role="php" md5sum="9e9138330e351c931ffe4cd8c32ce3c6"/>
+      <file name="src/ValidationKit/Validator.php" role="php" md5sum="f19e6e96c1a229dd92bbc604f663e11e"/>
     </dir>
   </contents>
   <dependencies>
@@ -72,7 +72,7 @@
       <install name="tests/ValidationKit/CallbackValidatorTest.php" as="ValidationKit/CallbackValidatorTest.php"/>
       <install name="tests/ValidationKit/ChainedValidatorTest.php" as="ValidationKit/ChainedValidatorTest.php"/>
       <install name="tests/ValidationKit/EmailValidatorTest.php" as="ValidationKit/EmailValidatorTest.php"/>
-      <install name="tests/ValidationKit/PasswordValidationTest.php" as="ValidationKit/PasswordValidationTest.php"/>
+      <install name="tests/ValidationKit/PasswordValidatorTest.php" as="ValidationKit/PasswordValidatorTest.php"/>
       <install name="tests/ValidationKit/PatternValidatorTest.php" as="ValidationKit/PatternValidatorTest.php"/>
       <install name="tests/ValidationKit/PhoneNumber/TWPhoneNumberValidatorTest.php" as="ValidationKit/PhoneNumber/TWPhoneNumberValidatorTest.php"/>
       <install name="tests/ValidationKit/RangeValidatorTest.php" as="ValidationKit/RangeValidatorTest.php"/>
@@ -82,7 +82,7 @@
       <install name="src/ValidationKit/CallbackValidator.php" as="ValidationKit/CallbackValidator.php"/>
       <install name="src/ValidationKit/ChainedValidator.php" as="ValidationKit/ChainedValidator.php"/>
       <install name="src/ValidationKit/EmailValidator.php" as="ValidationKit/EmailValidator.php"/>
-      <install name="src/ValidationKit/PasswordValidation.php" as="ValidationKit/PasswordValidation.php"/>
+      <install name="src/ValidationKit/PasswordValidator.php" as="ValidationKit/PasswordValidator.php"/>
       <install name="src/ValidationKit/PatternValidator.php" as="ValidationKit/PatternValidator.php"/>
       <install name="src/ValidationKit/PhoneNumber/TWPhoneNumberValidator.php" as="ValidationKit/PhoneNumber/TWPhoneNumberValidator.php"/>
       <install name="src/ValidationKit/RangeValidator.php" as="ValidationKit/RangeValidator.php"/>

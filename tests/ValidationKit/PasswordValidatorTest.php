@@ -1,10 +1,10 @@
 <?php
 
-class PasswordValidationTest extends PHPUnit_Framework_TestCase
+class PasswordValidatorTest extends PHPUnit_Framework_TestCase
 {
     function test()
     {
-        $v = new ValidationKit\PasswordValidation(array(
+        $v = new ValidationKit\PasswordValidator(array(
             'with_digits' => true,
             'max_length' => 10,
             'min_length' => 3,

@@ -67,12 +67,12 @@ abstract class Validator
 
     public function addValidMessage($msgId)
     {
-        $this->messages[] = ValidationMessage::createValid($msgId,$this->getMsgstr($msgId));
+        $this->messages[ $msgId ] = ValidationMessage::createValid($msgId,$this->getMsgstr($msgId));
     }
 
     public function addInvalidMessage($msgId)
     {
-        $this->messages[] = ValidationMessage::createInvalid($msgId,$this->getMsgstr($msgId));
+        $this->messages[ $msgId ] = ValidationMessage::createInvalid($msgId,$this->getMsgstr($msgId));
     }
 
     public function getMessages()

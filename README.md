@@ -29,6 +29,24 @@ provides its custom msgid for message mapping, you
 can simply override the message dictionary to customize 
 your messages.
 
+### EmailValidator
+
+```php
+<?php
+use ValidationKit\EmailValidator;
+$validator = new EmailValidator;
+if( $validator->validate('foo@foo.com') ) {
+    echo "Success!\n";
+} else {
+    foreach( $validator->getMessages() as $msgId => $msg ) {
+        // $msg is a ValidationMessage object, 
+        // which supports __toString() convertion.
+        echo $msg . "\n";
+    }
+}
+```
+
+
 ### PatternValidator 
 
 ```php
@@ -37,6 +55,15 @@ your messages.
     $validator = new PatternValidator( '#test test test#' );
     $bool = $validator->validate( $value );
     $msgs = $validator->getMessages();
+```
+
+### StringLengthValidator
+
+```php
+<?php
+$validator = new ValidationKit\StringLengthValidator(array( 
+    'min' => 5, 'max' => 10,
+));
 ```
 
 ### StringValidator
@@ -56,7 +83,7 @@ your messages.
         ));
     $bool = $validator->validate( $string );
     $msgs  = $validator->getMessages();
-    foreach( $msgs as $msg ) {
+    foreach( $msgs as $msgId => $msg ) {
         echo $msg, "\n";
     }
 ```
