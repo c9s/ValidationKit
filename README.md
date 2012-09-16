@@ -44,3 +44,13 @@
     $bool = $validator->validate( 10.0 );
 
 
+# Hacking
+
+Install dependencies:
+
+    $ onion install
+
+Run unit tests:
+
+    $ phpunit
+
