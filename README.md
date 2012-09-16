@@ -1,7 +1,8 @@
 # Validation
 
 
-## Validators
+Validators
+----------
 
 - `ValidationKit\PhoneNumber\TWPhoneNumberValidator`
 - `ValidationKit\TW\IDNumberValidator`
@@ -14,7 +15,8 @@
 - `ValidationKit\StringLengthValidator`
 - `ValidationKit\StringValidator`
 
-## Validator Constructor
+Validator Constructor
+---------------------
 
 ValidationKit Validator's constructor prototype is:
 
@@ -147,7 +149,8 @@ $validator = new ValidationKit\PasswordValidator(array(
     $bool = $validator->validate( 10.0 );
 ```
 
-# Customize your validator
+Customize your validator
+------------------------
 
 To write your own validator, here is the basic structure of a validator class:
 
@@ -197,7 +200,8 @@ class YourValidator extends Validator
 }
 ```
 
-# Hacking
+Hacking
+--------
 
 Install dependencies:
 
