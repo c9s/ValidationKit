@@ -88,6 +88,22 @@ $validator = new ValidationKit\StringLengthValidator(array(
     }
 ```
 
+### PasswordValidator
+
+```php
+<?php
+$validator = new ValidationKit\PasswordValidator(array(
+    'max_length' => 24,
+    'min_length' => 10,
+    'require_digits' => true,
+    'require_alpha' => true,
+), array( 
+    'require_digits_error' => 'Please enter digits in your password',
+    'require_alpha_error'  => 'Please enter alphabets in your password',
+    'max_length_error' => 'The maximum length of password is 24 charactors.'
+));
+```
+
 ### RangeValidator
 
 ```php
