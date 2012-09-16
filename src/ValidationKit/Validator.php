@@ -36,10 +36,24 @@ abstract class Validator
         } elseif( ! $msgstrs ) {
             $msgstrs = array();
         }
-        $this->msgstrs = array_merge(array(
-            'invalid' => 'Invalid',
-            'valid' => 'Valid',
-        ),$msgstrs);
+        $this->msgstrs = array_merge($this->getBuiltinMessages(),$this->getDefaultMessages());
+        $this->msgstrs = array_merge($this->msgstrs, $msgstrs);
+    }
+
+    public function getBuiltinMessages()
+    {
+        return array(
+            'invalid' => 'Invalid value',
+            'valid' => 'Valid value',
+        );
+    }
+
+    /**
+     * This method is for subclass to override.
+     */
+    public function getDefaultMessages()
+    {
+        return array();
     }
 
     /**
@@ -75,30 +89,57 @@ abstract class Validator
         $this->messages[ $msgId ] = ValidationMessage::createInvalid($msgId,$this->getMsgstr($msgId));
     }
 
+
+    /**
+     * Returns result messages
+     *
+     * @return array result messages
+     */
     public function getMessages()
     {
         return $this->messages;
     }
 
+    /**
+     * Set result messages
+     *
+     * @param array $messages 
+     */
     public function setMessages($messages)
     {
         $this->messages = $messages;
     }
 
-    protected function invalid($msgId = null)
+    /**
+     * Return a valid message with message id, 
+     * the message string parameter is optional (for default message)
+     *
+     * If the message is defined in message dictionary, 
+     * it won't overwrite it. 
+     *
+     * @param string $msgId
+     * @param string $msgStr
+     */
+    protected function valid($msgId = null,$msgStr = null)
+    {
+        $msgId = $msgId ?: 'valid';
+        $this->addValidMessage($msgId);
+        if( ! $this->hasMsgstr($msgId) )
+            $this->setMsgstr($msgId,$msgStr);
+        return $this->isValid = true;
+    }
+
+    protected function invalid($msgId = null, $msgStr = null)
     {
         $msgId = $msgId ?: 'invalid';
         $this->addInvalidMessage($msgId);
+        if( ! $this->hasMsgstr($msgId) )
+            $this->setMsgstr($msgId,$msgStr);
         $this->isValid = false;
         return false;
     }
 
-    protected function valid($msgId = null)
-    {
-        $msgId = $msgId ?: 'valid';
-        $this->addValidMessage($msgId);
-        return $this->isValid = true;
-    }
+
 
     public function isInvalid()
     {

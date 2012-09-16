@@ -24,10 +24,38 @@ The $msgs() is an associative array that contains:
 
     msg_id => msg_str
 
-For different kind of validation message, validator 
+For different kind of validation messages, every validator
 provides its custom msgid for message mapping, you
 can simply override the message dictionary to customize 
 your messages.
+
+The following sample code shows the format of message dictionary:
+
+```php
+<?php
+    $validtor = new PasswordValidator(array( /* options */ ), array( 
+        'require_digits_error' => 'Please enter digits in your password',
+        'require_alpha_error'  => 'Please enter alphabets in your password',
+        'max_length_error' => 'The maximum length of password is 24 charactors.'
+    ))
+?>
+```
+
+The following list is the default message mapping:
+
+- valid
+- invalid
+
+And of course you can easily extend messages in your customized 
+validator class.
+
+to return an invalid message in your validator:
+
+    return $this->invalid('require_digits_error');
+
+to return an valid message in your validator:
+
+    return $this->valid('require_digits_error');
 
 ### EmailValidator
 
@@ -117,6 +145,56 @@ $validator = new ValidationKit\PasswordValidator(array(
 
     $validator = new RangeValidator(array( '>' => 10 , '<' => 200 ));
     $bool = $validator->validate( 10.0 );
+```
+
+# Customize your validator
+
+To write your own validator, here is the basic structure of a validator class:
+
+```php
+<?php
+namespace YourApp;
+use ValidationKit\Validator;
+
+class YourValidator extends Validator
+{
+    public function validate($val) 
+    {
+        return $this->valid();
+    }
+}
+```
+
+You can provide your default message dictinory by defining a
+`getDefaultMessages` method:
+
+```php
+<?php
+namespace YourApp;
+use ValidationKit\Validator;
+
+class YourValidator extends Validator
+{
+    public function getDefaultMessages()
+    {
+        return array(
+            'valid' => 'Its a valid value.',
+            'too_large' => 'Your value is too large',
+            'too_small' => 'Your value is too small',
+        );
+    }
+
+
+    public function validate($val) 
+    {
+        if( $val > 30 )
+            return $this->invalid('too_large');
+
+        if( $val < 10 )
+            return $this->invalid('too_small');
+        return $this->valid();
+    }
+}
 ```
 
 # Hacking
