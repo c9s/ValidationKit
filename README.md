@@ -35,11 +35,11 @@ The following sample code shows the format of message dictionary:
 
 ```php
 <?php
-    $validtor = new PasswordValidator(array( /* options */ ), array( 
-        'require_digits_error' => 'Please enter digits in your password',
-        'require_alpha_error'  => 'Please enter alphabets in your password',
-        'max_length_error' => 'The maximum length of password is 24 charactors.'
-    ))
+$validtor = new PasswordValidator(array( /* options */ ), array( 
+    'require_digits_error' => 'Please enter digits in your password',
+    'require_alpha_error'  => 'Please enter alphabets in your password',
+    'max_length_error' => 'The maximum length of password is 24 charactors.'
+));
 ?>
 ```
 
@@ -51,13 +51,31 @@ The following list is the default message mapping:
 And of course you can easily extend messages in your customized 
 validator class.
 
-to return an invalid message in your validator:
+To return an invalid message in your validator:
 
     return $this->invalid('require_digits_error');
 
-to return an valid message in your validator:
+To return an valid message in your validator:
 
     return $this->valid('require_digits_error');
+
+To get the result messages from validator:
+
+```php
+<?php
+$msgs = $validator->getMessages();
+foreach( $msgs as $msgId => $msg ) {
+    // $msg => ValidationMessage
+}
+?>
+```
+
+The result message is a `ValidationMessage` object, there are three class
+properties in `ValidationMessage`:
+
+1. valid (boolean)
+2. id (string, message id)
+3. message (string, message)
 
 ### EmailValidator
 
@@ -75,7 +93,6 @@ if( $validator->validate('foo@foo.com') ) {
     }
 }
 ```
-
 
 ### PatternValidator 
 
