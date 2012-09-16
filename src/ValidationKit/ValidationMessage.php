@@ -3,15 +3,18 @@ namespace ValidationKit;
 
 class ValidationMessage
 {
+    /**
+     * @var boolean valid or invalid.
+     */
     public $valid = true;
 
     /**
-     * @var string validation message id (validation result type)
+     * @var string validation message id (validation result type).
      */
     public $id; 
 
     /**
-     * @var string validation message
+     * @var string validation message.
      */
     public $message;
 
@@ -35,7 +38,5 @@ class ValidationMessage
     {
         return $this->message;
     }
-
 }
-
 
