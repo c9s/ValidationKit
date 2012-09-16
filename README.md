@@ -34,7 +34,6 @@ your messages.
 The following sample code shows the format of message dictionary:
 
 ```php
-<?php
 $validtor = new PasswordValidator(array( /* options */ ), array( 
     'require_digits_error' => 'Please enter digits in your password',
     'require_alpha_error'  => 'Please enter alphabets in your password',
@@ -53,21 +52,23 @@ validator class.
 
 To return an invalid message in your validator:
 
-    return $this->invalid('require_digits_error');
+```php
+return $this->invalid('require_digits_error');
+```
 
 To return an valid message in your validator:
 
-    return $this->valid('require_digits_error');
+```php
+return $this->valid('require_digits_error');
+```
 
 To get the result messages from validator:
 
 ```php
-<?php
 $msgs = $validator->getMessages();
 foreach( $msgs as $msgId => $msg ) {
     // $msg => ValidationMessage
 }
-?>
 ```
 
 The result message is a `ValidationMessage` object, there are three class
