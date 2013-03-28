@@ -1,14 +1,15 @@
 {
-    "name": "corneltek/validationkit",
+    "name": "corneltek\/validationkit",
     "require": {
         "php": ">=5.3.0"
     },
     "require-dev": {
-        "corneltek/phpunit-testmore": "dev-master"
+        "corneltek\/phpunit-testmore": "dev-master"
     },
-    "autoload": { 
-        "psr-0": { 
-            "ValidationKit": "src" 
-        } 
-    }
+    "autoload": {
+        "psr-0": {
+            "ValidationKit": "src"
+        }
+    },
+    "version": "1.1.1"
 }
