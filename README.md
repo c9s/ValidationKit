@@ -214,7 +214,7 @@ Hacking
 
 Install dependencies:
 
-    $ onion install
+    $ composer install --dev
 
 Run unit tests:
 

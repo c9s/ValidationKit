@@ -3,6 +3,9 @@
     "require": {
         "php": ">=5.3.0"
     },
+    "require-dev": {
+        "corneltek/phpunit-testmore": "dev-master"
+    },
     "autoload": { 
         "psr-0": { 
             "ValidationKit": "src" 
