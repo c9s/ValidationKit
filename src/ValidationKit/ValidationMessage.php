@@ -20,7 +20,6 @@ class ValidationMessage
 
     public static function createValid($msgId,$msg) {
         $msg = new self;
-        $msg->id = $msgId;
         $msg->message = $msg;
         $msg->valid = true;
         return $msg;
@@ -28,7 +27,6 @@ class ValidationMessage
 
     public static function createInvalid($msgId,$msg) {
         $msg = new self;
-        $msg->id = $msgId;
         $msg->message = $msg;
         $msg->valid = false;
         return $msg;
